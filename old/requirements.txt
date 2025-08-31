@@ -1,0 +1,16 @@
+# requirements.txt
+# (project root)
+
+torch>=2.0.0
+torchvision>=0.15.0
+torchaudio>=2.0.0
+einops>=0.7.0
+tqdm>=4.66.0
+pyyaml>=6.0.1
+opencv-python>=4.8.1
+numpy>=1.24.0
+Pillow>=10.0.0
+scikit-image>=0.22.0
+lpips>=0.1.4
+# CLIP options: prefer open_clip (fast install); fallback to OpenAI clip.
+open_clip_torch>=2.24.0

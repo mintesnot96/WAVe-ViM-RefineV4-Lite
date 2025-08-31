@@ -1,0 +1,117 @@
+experiment_name: dsm_wavevitmamba_tinyrefiner
+output_dir: /kaggle/working/outputs
+seed: 42
+precision: amp
+log_interval: 10
+val_interval: 100
+save_interval: 20000
+num_workers: 2
+device: cuda
+ddp: true
+world_size: 1
+batch_size: 2
+grad_accum_steps: 1
+train_data:
+  root_dir: /kaggle/input/cdd-11/CDD-11_train
+  include_folders: []
+  pairing:
+    fuzzy_threshold: 0.86
+    strategy_order:
+    - exact
+    - strip_suffix_num
+    - prefix
+    - fuzzy
+  size:
+  - 256
+  - 256
+val_data:
+  dataset_type: cdd_like
+  root_dir: /kaggle/input/cdd-11/CDD-11_test
+  include_folders:
+  - low_haze_snow
+  - haze_rain
+  - snow
+  - low
+  - rain
+  - low_haze_rain
+  - haze_snow
+  - haze
+  - low_rain
+  - low_snow
+  - low_haze
+  pairing:
+    fuzzy_threshold: 0.86
+    strategy_order:
+    - exact
+    - strip_suffix_num
+    - prefix
+    - fuzzy
+  size:
+  - 256
+  - 256
+  paired_roots:
+  - /kaggle/input/cdd-11/CDD-11_test
+  root_clean: /kaggle/input/cdd-11/CDD-11_test/clear
+model:
+  in_channels: 3
+  base_channels: 64
+  depths:
+  - 2
+  - 2
+  - 4
+  films_per_block: true
+  use_window_attn: true
+  window_attn_heads: 4
+  window_size: 8
+  use_mamba_blocks: true
+  mamba_kernel_size: 5
+  bottleneck_cross_attn: true
+  dwt_levels: 1
+  use_tiny_refiner: true
+  tiny_refiner_steps: 3
+  tiny_refiner_channels: 64
+  dsm_multi_label: true
+  dsm_use_entmax: false
+  film_spatial: true
+  ldo_steps: 3
+  ldo_lr: 0.25
+  clip:
+    model_name: ViT-B-32
+    pretrained: laion2b_s34b_b79k
+    freeze: true
+    mem_degradations:
+    - noise
+    - blur
+    - motion_blur
+    - low_light
+    - haze
+    - fog
+    - rain
+    - snow
+    - jpeg
+    - shadow
+    - smoke
+    - inpainting
+    - raindrop
+    temperature: 0.07
+    train_memory: true
+    ema_momentum: 0.98
+loss:
+  w_rec: 1.0
+  w_comp: 0.1
+  comp_margin: 0.1
+  w_wav_L: 0.5
+  w_wav_H: 0.25
+  w_blur: 0.1
+  w_clip: 0.1
+  use_uncertainty: true
+optim:
+  lr: 0.0002
+  weight_decay: 0.0
+  betas:
+  - 0.9
+  - 0.99
+  epochs: 100
+  iters_per_epoch: 2000
+  warmup_iters: 1000
+  scale_lr_by_world: true
