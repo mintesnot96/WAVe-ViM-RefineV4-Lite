@@ -70,7 +70,8 @@ model:
   use_tiny_refiner: true
   tiny_refiner_steps: 3
   tiny_refiner_channels: 64
-  dsm_multi_label: true
+  # dsm_multi_label: true
+  dsm_multi_label: false
   dsm_use_entmax: false
   film_spatial: true
   # ldo_steps: 3
