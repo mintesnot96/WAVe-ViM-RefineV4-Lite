@@ -71,7 +71,7 @@ model:
   tiny_refiner_steps: 3
   tiny_refiner_channels: 64
   # dsm_multi_label: true
-  dsm_multi_label: false
+  dsm_multi_label: true
   dsm_use_entmax: false
   film_spatial: true
   # ldo_steps: 3
@@ -95,7 +95,8 @@ model:
     - smoke
     - inpainting
     - raindrop
-    temperature: 0.07
+    # temperature: 0.07
+    temperature: 0.1
     train_memory: true
     ema_momentum: 0.98
 loss:
