@@ -12,7 +12,7 @@ world_size: 1
 batch_size: 2
 grad_accum_steps: 1
 train_data:
-  root_dir: /kaggle/input/cdd-11-30/CDD-11_train
+  root_dir: /kaggle/input/cdd-11/CDD-11_train
   include_folders: []
   pairing:
     fuzzy_threshold: 0.86
@@ -26,7 +26,7 @@ train_data:
   - 256
 val_data:
   dataset_type: cdd_like
-  root_dir: /kaggle/input/cdd-11-30/CDD-11_test
+  root_dir: /kaggle/input/cdd-11/CDD-11_test
   include_folders:
   - low_haze_snow
   - haze_rain
@@ -50,8 +50,8 @@ val_data:
   - 256
   - 256
   paired_roots:
-  - /kaggle/input/cdd-11-30/CDD-11_test
-  root_clean: /kaggle/input/cdd-11-30/CDD-11_test/clear
+  - /kaggle/input/cdd-11/CDD-11_test
+  root_clean: /kaggle/input/cdd-11/CDD-11_test/clear
 model:
   in_channels: 3
   base_channels: 64
@@ -71,7 +71,7 @@ model:
   tiny_refiner_steps: 3
   tiny_refiner_channels: 64
   # dsm_multi_label: true
-  dsm_multi_label: true
+  dsm_multi_label: false
   dsm_use_entmax: false
   film_spatial: true
   # ldo_steps: 3
@@ -95,8 +95,8 @@ model:
     - smoke
     - inpainting
     - raindrop
-    # temperature: 0.07
-    temperature: 0.1
+    temperature: 0.07
+    # temperature: 0.1
     train_memory: true
     ema_momentum: 0.98
 loss:
