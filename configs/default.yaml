@@ -96,7 +96,7 @@ model:
     - inpainting
     - raindrop
     # temperature: 0.07
-    temperature: 0.15
+    temperature: 0.1
     train_memory: true
     ema_momentum: 0.98
 loss:
