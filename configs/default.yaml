@@ -20,6 +20,7 @@ train_data:
     - exact
     - strip_suffix_num
     - prefix
+    
     - fuzzy
   size:
   - 256
