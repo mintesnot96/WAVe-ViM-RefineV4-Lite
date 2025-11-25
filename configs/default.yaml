@@ -70,12 +70,10 @@ model:
   use_tiny_refiner: true
   tiny_refiner_steps: 3
   tiny_refiner_channels: 64
-  # dsm_multi_label: true
   dsm_multi_label: false
   dsm_use_entmax: false
   film_spatial: true
-  # ldo_steps: 3
-  ldo_steps: 0 
+  ldo_steps: 0
   ldo_lr: 0.25
   clip:
     model_name: ViT-B-32
@@ -96,7 +94,6 @@ model:
     - inpainting
     - raindrop
     temperature: 0.07
-    # temperature: 0.1
     train_memory: true
     ema_momentum: 0.98
 loss:
