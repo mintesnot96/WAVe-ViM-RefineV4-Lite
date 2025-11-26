@@ -4,7 +4,7 @@ seed: 42
 precision: amp
 log_interval: 10
 val_interval: 100
-save_interval: 20000
+save_interval: 200
 num_workers: 2
 device: cuda
 ddp: true
